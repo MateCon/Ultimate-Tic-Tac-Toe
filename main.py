@@ -18,15 +18,22 @@ CELL_SIZE = 80
 GRID_GAP = 8
 BOARD_SIZE = (CELL_SIZE + GRID_GAP) * 3 + 10
 
-superBoard = []
-superBoardState = "yellow"
-for yIndex in range(3):
-    row = []
-    for xIndex in range(3):
-        row.append(Board(display, CELL_SIZE, GRID_GAP, xIndex * BOARD_SIZE, yIndex * BOARD_SIZE, [xIndex, yIndex]))
-    superBoard.append(row)
+def createSuperBoard():
+    superBoard = []
+    for yIndex in range(3):
+        row = []
+        for xIndex in range(3):
+            row.append(Board(display, CELL_SIZE, GRID_GAP, xIndex * BOARD_SIZE, yIndex * BOARD_SIZE, [xIndex, yIndex]))
+        superBoard.append(row)
+    return superBoard
 
-turn = "red"
+def resetGame():
+    superBoard = createSuperBoard()
+    superBoardState = "yellow"
+    turn = "red"
+    return superBoard, superBoardState, turn
+
+superBoard, superBoardState, turn = resetGame()
 
 def createText(superBoardState):
     text = ""
