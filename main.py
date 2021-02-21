@@ -74,9 +74,7 @@ while True:
             if event.key == pygame.K_r:
                 superBoard, superBoardState, turn = resetGame()
         
-    for row in superBoard:
-        for board in row:
-            board.show()
+    [board.show() for row in superBoard for board in row]
 
     text = createText(superBoardState)
     
