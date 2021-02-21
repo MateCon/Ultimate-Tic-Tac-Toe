@@ -70,6 +70,9 @@ while True:
                                 else:
                                     turn = "red"
             superBoardState = endGame(superBoard, superBoardState)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r:
+                superBoard, superBoardState, turn = resetGame()
         
     for row in superBoard:
         for board in row:
