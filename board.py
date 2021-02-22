@@ -35,9 +35,7 @@ def endGame(board, state):
     return "draw"
 
 def resetBoards(superBoard, index, superBoardState):
-    for row in superBoard:
-        for board in row:
-            board.update(superBoard)
+    [board.update(superBoard) for row in superBoard for board in row]
 
     indexes = []
     if superBoard[index[-1]][index[0]].state != "yellow" and superBoard[index[-1]][index[0]].state != "white":
@@ -121,9 +119,7 @@ class Board:
         else:
             color = (255, 255, 255)
         pygame.draw.rect(self.display, color, self.rect)
-        for row in self.cells:
-            for cell in row:
-                cell.show()
+        [cell.show() for row in self.cells for cell in row]
 
     def update(self, superBoard):
         for row in superBoard:
