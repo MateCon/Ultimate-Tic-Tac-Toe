@@ -69,7 +69,8 @@ while True:
                                     turn = "blue"
                                 else:
                                     turn = "red"
-            superBoardState = endGame(superBoard, superBoardState)
+            superBoardState = getState(superBoard, superBoardState)
+            
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
                 superBoard, superBoardState, turn = resetGame()
