@@ -13,7 +13,7 @@ def isInArray(array, target):
             return True
     return False
 
-def endGame(board, state):
+def getState(board, state):
     if state != "yellow" and state != "white":
         return state
 
@@ -89,26 +89,6 @@ class Board:
         self.cells = self.createBoard()
         self.rect = pygame.Rect(self.xPos - 2, self.yPos - 2, self.BOARD_SIZE, self.BOARD_SIZE)
 
-    def checkState(self):
-        if self.state != "yellow" and self.state != "white":
-            return self.state
-        for i in range(3):
-            column = areEquals([self.cells[i][0].state, self.cells[i][1].state, self.cells[i][2].state])
-            row = areEquals([self.cells[0][i].state, self.cells[1][i].state, self.cells[2][i].state])
-            if column and self.cells[i][0].state != "yellow" and self.cells[i][0].state != "white":
-                return self.cells[i][0].state
-            elif row and self.cells[0][i].state != "yellow" and self.cells[i][0].state != "white":
-                return self.cells[0][i].state
-
-        if areEquals([self.cells[0][0].state, self.cells[1][1].state, self.cells[2][2].state]) or areEquals([self.cells[2][0].state, self.cells[1][1].state, self.cells[0][2].state]):
-            return self.cells[1][1].state
-
-        for row in self.cells:
-            for cell in row:
-                if cell.state == "yellow" or cell.state == "white":
-                    return "white"
-        return "draw"
-
     def show(self):
         if self.state == "red":
             color = (255, 0, 0)
@@ -122,9 +102,7 @@ class Board:
         [cell.show() for row in self.cells for cell in row]
 
     def update(self, superBoard):
-        for row in superBoard:
-            for board in row:
-                board.state = board.checkState()
+        self.state = getState(self.cells, self.state)
         
 
 class Cell:
