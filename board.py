@@ -91,13 +91,13 @@ class Board:
 
     def show(self):
         if self.state == "red":
-            color = (255, 0, 0)
+            color = (240, 143, 102)
         elif self.state == "blue":
-            color = (0, 0, 255)
+            color = (147, 148, 232)
         elif self.state == "draw":
-            color = (140, 140, 140)
+            color = (249, 251, 250)
         else:
-            color = (255, 255, 255)
+            color = (31, 31, 31)
         pygame.draw.rect(self.display, color, self.rect)
         [cell.show() for row in self.cells for cell in row]
 
@@ -130,12 +130,12 @@ class Cell:
 
     def show(self):
         if self.state == "red":
-            color = (255, 0, 0)
+            color = (240, 143, 102)
         elif self.state == "blue":
-            color = (0, 0, 255)
+            color = (147, 148, 232)
         elif self.state == "yellow":
-            color = (255, 255, 0)
+            color = (224, 224, 244)
         else:
-            color = (255, 255, 255)
+            color = (31, 31, 31)
         pygame.draw.rect(self.display, (0, 0, 0), self.rect, 3)
         pygame.draw.rect(self.display, color, self.rect)
